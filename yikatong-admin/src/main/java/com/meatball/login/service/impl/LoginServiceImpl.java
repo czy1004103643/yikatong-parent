@@ -18,7 +18,6 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.meatball.component.TokenComponent;
@@ -53,8 +52,6 @@ public class LoginServiceImpl implements LoginService {
 	private TokenComponent tokenComponent;
 	@Resource
 	private SysRoleMapper roleMapper;
-	@Resource
-	private JavaMailSender mailSender;
 	
 	@Override
 	public ResultMsg validate(SysUser user) throws BindingException {

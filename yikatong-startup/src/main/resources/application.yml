@@ -35,8 +35,8 @@ spring:
     cache: false  #禁用缓存，开发适用
   datasource: 
     name: meatball
-    #url: jdbc:mysql://211.149.149.227:3306/meatball?useUnicode=true&characterEncoding=utf8
-    url: jdbc:mysql://192.168.31.10:3306/yikatong?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://211.149.149.227:3306/meatball?useUnicode=true&characterEncoding=utf8
+    #url: jdbc:mysql://192.168.31.10:3306/yikatong?useUnicode=true&characterEncoding=utf8
 #    url: jdbc:mysql://localhost:3306/yikatong?useUnicode=true&characterEncoding=utf8
 #    username: root
 #    password: jiayuan
@@ -57,21 +57,6 @@ spring:
     testOnReturn: false
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
-  #配置邮件发送
-  mail: 
-    host: smtp.sina.cn
-    username: 13882006101@sina.cn
-    password: P@ssw0rd,
-    # 设置是否需要认证，如果为true,那么用户名和密码就必须的，
-    #如果设置false，可以不设置用户名和密码，当然也得看你的对接的平台是否支持无密码进行访问的。
-    properties: 
-      mail: 
-        smtp: 
-          auth: true
-        # STARTTLS[1]  是对纯文本通信协议的扩展。它提供一种方式将纯文本连接升级为加密连接（TLS或SSL），而不是另外使用一个端口作加密通信。
-        starttls: 
-          enable: true
-          required: true
 mybatis: 
   mapperLocations: classpath*:com/meatball/**/mapper/*.xml   #mapper文件的位置
   #typeAliasesPackage: classpath:**.model   #为实体对象所在的包，跟数据库表一一对应
