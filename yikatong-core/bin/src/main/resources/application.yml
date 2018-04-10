@@ -1,0 +1,58 @@
+server: 
+  port: 8080 #配置端口号 
+  
+secret:
+  key: Jeisr^l,?>0  #token验证密钥
+  issuer:  #JWT的签发者，是否使用是可选的
+  subject:  #JWT所面向的用户，是否使用是可选的
+  ttlMillis: 3600 #失效时间
+
+#启用不严格检查HTML
+spring: 
+#  devtools: #配置热启动模式
+#    restart: 
+#      enabled: true #热部署生效
+#      additional-paths: src/main/java  #设置重启的目录
+#      exclude: /static/**,/templates/**  #classpath文件夹内容修改不重启
+  thymeleaf: #配置模板引擎
+    prefix: classpath:/templates/  #配置模版路径，这是默认地址，可以省略
+    content-type: text/html 
+    mode: LEGACYHTML5   #定义不严格检查HTML标签
+    cache: false  #禁用缓存，开发适用
+  datasource: 
+    name: meatball
+    url: jdbc:mysql://211.149.149.227:3306/meatball?useUnicode=true&characterEncoding=utf8
+    username: jgrjb
+    password: Jiayuanjgrjb20
+    type: com.alibaba.druid.pool.DruidDataSource  #使用druid数据源
+    driver-class-name: com.mysql.jdbc.Driver
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+mybatis: 
+  mapperLocations: classpath:**/mapping/*.xml   #mapper文件的位置
+  #typeAliasesPackage: classpath:**.model   #为实体对象所在的包，跟数据库表一一对应
+pagehelper:   #Mybatis分页插件
+  dialect: com.github.pagehelper.PageHelper
+  autoDialect: true
+  closeConn: false  
+  reasonable: true  
+upload: #文件上传配置
+  localtion:  #配置默认文件保存位置
+    windows: d:/Users/meatball/file/
+    linux: /Users/zhang.xiangyu/workspace/meatball/file/
+  maxFileSize: 10240KB #单个文件最大KB/MB
+  maxRequestSize: 102400KB   #设置总上传数据总大小  
+    
+    
+    

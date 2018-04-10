@@ -1,0 +1,12 @@
+#微信支付配置属性
+weixinpay: 
+ #公众账号ID
+ appid: wx9852a1dc394adc7d
+ #商户号
+ mch_id: 1252626401
+ #设备号
+ device_info: WEB
+ #指定支付方式:限制用户不能使用信用卡支付
+ limit_pay: no_credit
+ #回调地址
+ notify_url: http://jycompany.cn/api/ykt/order/wxCallBack

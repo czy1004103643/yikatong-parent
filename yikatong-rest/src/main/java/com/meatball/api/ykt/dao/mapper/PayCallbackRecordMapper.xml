@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meatball.api.ykt.dao.PayCallbackRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.meatball.api.ykt.model.PayCallbackRecord" >
+    <id column="b_id" property="bId" jdbcType="BIGINT" />
+    <result column="t_time" property="tTime" jdbcType="TIMESTAMP" />
+    <result column="v_orderId" property="vOrderid" jdbcType="VARCHAR" />
+    <result column="v_payPlatform" property="vPayplatform" jdbcType="VARCHAR" />
+    <result column="v_dealNo" property="vDealno" jdbcType="VARCHAR" />
+    <result column="t_orderTime" property="tOrdertime" jdbcType="TIMESTAMP" />
+    <result column="t_payTime" property="tPaytime" jdbcType="TIMESTAMP" />
+    <result column="d_balance" property="dBalance" jdbcType="DECIMAL" />
+    <result column="i_dealType2" property="iDealtype2" jdbcType="INTEGER" />
+    <result column="v_dealName" property="vDealname" jdbcType="VARCHAR" />
+    <result column="v_result" property="vResult" jdbcType="VARCHAR" />
+    <result column="b_accountId" property="bAccountid" jdbcType="BIGINT" />
+    <result column="v_accountName" property="vAccountname" jdbcType="VARCHAR" />
+    <result column="v_bank" property="vBank" jdbcType="VARCHAR" />
+    <result column="v_merchantId" property="vMerchantid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    b_id, t_time, v_orderId, v_payPlatform, v_dealNo, t_orderTime, t_payTime, d_balance, 
+    i_dealType2, v_dealName, v_result, b_accountId, v_accountName, v_bank, v_merchantId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_pay_callback_record
+    where b_id = #{bId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_pay_callback_record
+    where b_id = #{bId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.meatball.api.ykt.model.PayCallbackRecord" >
+  <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="bId">
+  		SELECT LAST_INSERT_ID() AS b_id
+  	</selectKey>
+    insert into t_pay_callback_record (b_id, t_time, v_orderId, 
+      v_payPlatform, v_dealNo, t_orderTime, 
+      t_payTime, d_balance, i_dealType2, 
+      v_dealName, v_result, b_accountId, 
+      v_accountName, v_bank, v_merchantId
+      )
+    values (#{bId,jdbcType=BIGINT}, #{tTime,jdbcType=TIMESTAMP}, #{vOrderid,jdbcType=VARCHAR}, 
+      #{vPayplatform,jdbcType=VARCHAR}, #{vDealno,jdbcType=VARCHAR}, #{tOrdertime,jdbcType=TIMESTAMP}, 
+      #{tPaytime,jdbcType=TIMESTAMP}, #{dBalance,jdbcType=DECIMAL}, #{iDealtype2,jdbcType=INTEGER}, 
+      #{vDealname,jdbcType=VARCHAR}, #{vResult,jdbcType=VARCHAR}, #{bAccountid,jdbcType=BIGINT}, 
+      #{vAccountname,jdbcType=VARCHAR}, #{vBank,jdbcType=VARCHAR}, #{vMerchantid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.meatball.api.ykt.model.PayCallbackRecord" >
+  <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="bId">
+  		SELECT LAST_INSERT_ID() AS b_id
+  	</selectKey>
+    insert into t_pay_callback_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bId != null" >
+        b_id,
+      </if>
+      <if test="tTime != null" >
+        t_time,
+      </if>
+      <if test="vOrderid != null" >
+        v_orderId,
+      </if>
+      <if test="vPayplatform != null" >
+        v_payPlatform,
+      </if>
+      <if test="vDealno != null" >
+        v_dealNo,
+      </if>
+      <if test="tOrdertime != null" >
+        t_orderTime,
+      </if>
+      <if test="tPaytime != null" >
+        t_payTime,
+      </if>
+      <if test="dBalance != null" >
+        d_balance,
+      </if>
+      <if test="iDealtype2 != null" >
+        i_dealType2,
+      </if>
+      <if test="vDealname != null" >
+        v_dealName,
+      </if>
+      <if test="vResult != null" >
+        v_result,
+      </if>
+      <if test="bAccountid != null" >
+        b_accountId,
+      </if>
+      <if test="vAccountname != null" >
+        v_accountName,
+      </if>
+      <if test="vBank != null" >
+        v_bank,
+      </if>
+      <if test="vMerchantid != null" >
+        v_merchantId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bId != null" >
+        #{bId,jdbcType=BIGINT},
+      </if>
+      <if test="tTime != null" >
+        #{tTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vOrderid != null" >
+        #{vOrderid,jdbcType=VARCHAR},
+      </if>
+      <if test="vPayplatform != null" >
+        #{vPayplatform,jdbcType=VARCHAR},
+      </if>
+      <if test="vDealno != null" >
+        #{vDealno,jdbcType=VARCHAR},
+      </if>
+      <if test="tOrdertime != null" >
+        #{tOrdertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tPaytime != null" >
+        #{tPaytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dBalance != null" >
+        #{dBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="iDealtype2 != null" >
+        #{iDealtype2,jdbcType=INTEGER},
+      </if>
+      <if test="vDealname != null" >
+        #{vDealname,jdbcType=VARCHAR},
+      </if>
+      <if test="vResult != null" >
+        #{vResult,jdbcType=VARCHAR},
+      </if>
+      <if test="bAccountid != null" >
+        #{bAccountid,jdbcType=BIGINT},
+      </if>
+      <if test="vAccountname != null" >
+        #{vAccountname,jdbcType=VARCHAR},
+      </if>
+      <if test="vBank != null" >
+        #{vBank,jdbcType=VARCHAR},
+      </if>
+      <if test="vMerchantid != null" >
+        #{vMerchantid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meatball.api.ykt.model.PayCallbackRecord" >
+    update t_pay_callback_record
+    <set >
+      <if test="tTime != null" >
+        t_time = #{tTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vOrderid != null" >
+        v_orderId = #{vOrderid,jdbcType=VARCHAR},
+      </if>
+      <if test="vPayplatform != null" >
+        v_payPlatform = #{vPayplatform,jdbcType=VARCHAR},
+      </if>
+      <if test="vDealno != null" >
+        v_dealNo = #{vDealno,jdbcType=VARCHAR},
+      </if>
+      <if test="tOrdertime != null" >
+        t_orderTime = #{tOrdertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tPaytime != null" >
+        t_payTime = #{tPaytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dBalance != null" >
+        d_balance = #{dBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="iDealtype2 != null" >
+        i_dealType2 = #{iDealtype2,jdbcType=INTEGER},
+      </if>
+      <if test="vDealname != null" >
+        v_dealName = #{vDealname,jdbcType=VARCHAR},
+      </if>
+      <if test="vResult != null" >
+        v_result = #{vResult,jdbcType=VARCHAR},
+      </if>
+      <if test="bAccountid != null" >
+        b_accountId = #{bAccountid,jdbcType=BIGINT},
+      </if>
+      <if test="vAccountname != null" >
+        v_accountName = #{vAccountname,jdbcType=VARCHAR},
+      </if>
+      <if test="vBank != null" >
+        v_bank = #{vBank,jdbcType=VARCHAR},
+      </if>
+      <if test="vMerchantid != null" >
+        v_merchantId = #{vMerchantid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where b_id = #{bId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meatball.api.ykt.model.PayCallbackRecord" >
+    update t_pay_callback_record
+    set t_time = #{tTime,jdbcType=TIMESTAMP},
+      v_orderId = #{vOrderid,jdbcType=VARCHAR},
+      v_payPlatform = #{vPayplatform,jdbcType=VARCHAR},
+      v_dealNo = #{vDealno,jdbcType=VARCHAR},
+      t_orderTime = #{tOrdertime,jdbcType=TIMESTAMP},
+      t_payTime = #{tPaytime,jdbcType=TIMESTAMP},
+      d_balance = #{dBalance,jdbcType=DECIMAL},
+      i_dealType2 = #{iDealtype2,jdbcType=INTEGER},
+      v_dealName = #{vDealname,jdbcType=VARCHAR},
+      v_result = #{vResult,jdbcType=VARCHAR},
+      b_accountId = #{bAccountid,jdbcType=BIGINT},
+      v_accountName = #{vAccountname,jdbcType=VARCHAR},
+      v_bank = #{vBank,jdbcType=VARCHAR},
+      v_merchantId = #{vMerchantid,jdbcType=VARCHAR}
+    where b_id = #{bId,jdbcType=BIGINT}
+  </update>
+</mapper>

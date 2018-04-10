@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meatball.api.ykt.dao.AccountMapper" >
+  <resultMap id="BaseResultMap" type="com.meatball.api.ykt.model.Account" >
+    <id column="b_id" property="bId" jdbcType="BIGINT" />
+    <result column="v_idcard" property="vIdcard" jdbcType="VARCHAR" />
+    <result column="v_patientIdcard" property="vPatientidcard" jdbcType="VARCHAR" />
+    <result column="v_sinCard" property="vSincard" jdbcType="VARCHAR" />
+    <result column="v_healthCard" property="vHealthcard" jdbcType="VARCHAR" />
+    <result column="d_balance" property="dBalance" jdbcType="DECIMAL" />
+    <result column="v_paymentCode" property="vPaymentcode" jdbcType="VARCHAR" />
+    <result column="v_fingerprint" property="vFingerprint" jdbcType="VARCHAR" />
+    <result column="t_createDate" property="tCreatedate" jdbcType="TIMESTAMP" />
+    <result column="v_name" property="vName" jdbcType="VARCHAR" />
+    <result column="v_tel" property="vTel" jdbcType="VARCHAR" />
+    <result column="i_gender" property="iGender" jdbcType="INTEGER" />
+    <result column="v_address" property="vAddress" jdbcType="VARCHAR" />
+    <result column="d_birthday" property="dBirthday" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    b_id, v_idcard, v_patientIdcard, v_sinCard, v_healthCard, d_balance, v_paymentCode, 
+    v_fingerprint, t_createDate, v_name, v_tel, i_gender, v_address, d_birthday
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_account
+    where b_id = #{bId,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_account
+    where b_id = #{bId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.meatball.api.ykt.model.Account" >
+  <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="bId">
+  		SELECT LAST_INSERT_ID() AS b_id
+  	</selectKey>
+  
+    insert into t_account (b_id, v_idcard, v_patientIdcard, 
+      v_sinCard, v_healthCard, d_balance, 
+      v_paymentCode, v_fingerprint, t_createDate, 
+      v_name, v_tel, i_gender, 
+      v_address, d_birthday)
+    values (#{bId,jdbcType=BIGINT}, #{vIdcard,jdbcType=VARCHAR}, #{vPatientidcard,jdbcType=VARCHAR}, 
+      #{vSincard,jdbcType=VARCHAR}, #{vHealthcard,jdbcType=VARCHAR}, #{dBalance,jdbcType=DECIMAL}, 
+      #{vPaymentcode,jdbcType=VARCHAR}, #{vFingerprint,jdbcType=VARCHAR}, #{tCreatedate,jdbcType=TIMESTAMP}, 
+      #{vName,jdbcType=VARCHAR}, #{vTel,jdbcType=VARCHAR}, #{iGender,jdbcType=INTEGER}, 
+      #{vAddress,jdbcType=VARCHAR}, #{dBirthday,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meatball.api.ykt.model.Account" >
+  <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="bId">
+  		SELECT LAST_INSERT_ID() AS b_id
+  	</selectKey>
+    insert into t_account
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bId != null" >
+        b_id,
+      </if>
+      <if test="vIdcard != null" >
+        v_idcard,
+      </if>
+      <if test="vPatientidcard != null" >
+        v_patientIdcard,
+      </if>
+      <if test="vSincard != null" >
+        v_sinCard,
+      </if>
+      <if test="vHealthcard != null" >
+        v_healthCard,
+      </if>
+      <if test="dBalance != null" >
+        d_balance,
+      </if>
+      <if test="vPaymentcode != null" >
+        v_paymentCode,
+      </if>
+      <if test="vFingerprint != null" >
+        v_fingerprint,
+      </if>
+      <if test="tCreatedate != null" >
+        t_createDate,
+      </if>
+      <if test="vName != null" >
+        v_name,
+      </if>
+      <if test="vTel != null" >
+        v_tel,
+      </if>
+      <if test="iGender != null" >
+        i_gender,
+      </if>
+      <if test="vAddress != null" >
+        v_address,
+      </if>
+      <if test="dBirthday != null" >
+        d_birthday,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bId != null" >
+        #{bId,jdbcType=BIGINT},
+      </if>
+      <if test="vIdcard != null" >
+        #{vIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="vPatientidcard != null" >
+        #{vPatientidcard,jdbcType=VARCHAR},
+      </if>
+      <if test="vSincard != null" >
+        #{vSincard,jdbcType=VARCHAR},
+      </if>
+      <if test="vHealthcard != null" >
+        #{vHealthcard,jdbcType=VARCHAR},
+      </if>
+      <if test="dBalance != null" >
+        #{dBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="vPaymentcode != null" >
+        #{vPaymentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="vFingerprint != null" >
+        #{vFingerprint,jdbcType=VARCHAR},
+      </if>
+      <if test="tCreatedate != null" >
+        #{tCreatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vName != null" >
+        #{vName,jdbcType=VARCHAR},
+      </if>
+      <if test="vTel != null" >
+        #{vTel,jdbcType=VARCHAR},
+      </if>
+      <if test="iGender != null" >
+        #{iGender,jdbcType=INTEGER},
+      </if>
+      <if test="vAddress != null" >
+        #{vAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="dBirthday != null" >
+        #{dBirthday,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meatball.api.ykt.model.Account" >
+    update t_account
+    <set >
+      <if test="vIdcard != null" >
+        v_idcard = #{vIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="vPatientidcard != null" >
+        v_patientIdcard = #{vPatientidcard,jdbcType=VARCHAR},
+      </if>
+      <if test="vSincard != null" >
+        v_sinCard = #{vSincard,jdbcType=VARCHAR},
+      </if>
+      <if test="vHealthcard != null" >
+        v_healthCard = #{vHealthcard,jdbcType=VARCHAR},
+      </if>
+      <if test="dBalance != null" >
+        d_balance = #{dBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="vPaymentcode != null" >
+        v_paymentCode = #{vPaymentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="vFingerprint != null" >
+        v_fingerprint = #{vFingerprint,jdbcType=VARCHAR},
+      </if>
+      <if test="tCreatedate != null" >
+        t_createDate = #{tCreatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vName != null" >
+        v_name = #{vName,jdbcType=VARCHAR},
+      </if>
+      <if test="vTel != null" >
+        v_tel = #{vTel,jdbcType=VARCHAR},
+      </if>
+      <if test="iGender != null" >
+        i_gender = #{iGender,jdbcType=INTEGER},
+      </if>
+      <if test="vAddress != null" >
+        v_address = #{vAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="dBirthday != null" >
+        d_birthday = #{dBirthday,jdbcType=DATE},
+      </if>
+    </set>
+    where b_id = #{bId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meatball.api.ykt.model.Account" >
+    update t_account
+    set v_idcard = #{vIdcard,jdbcType=VARCHAR},
+      v_patientIdcard = #{vPatientidcard,jdbcType=VARCHAR},
+      v_sinCard = #{vSincard,jdbcType=VARCHAR},
+      v_healthCard = #{vHealthcard,jdbcType=VARCHAR},
+      d_balance = #{dBalance,jdbcType=DECIMAL},
+      v_paymentCode = #{vPaymentcode,jdbcType=VARCHAR},
+      v_fingerprint = #{vFingerprint,jdbcType=VARCHAR},
+      t_createDate = #{tCreatedate,jdbcType=TIMESTAMP},
+      v_name = #{vName,jdbcType=VARCHAR},
+      v_tel = #{vTel,jdbcType=VARCHAR},
+      i_gender = #{iGender,jdbcType=INTEGER},
+      v_address = #{vAddress,jdbcType=VARCHAR},
+      d_birthday = #{dBirthday,jdbcType=DATE}
+    where b_id = #{bId,jdbcType=BIGINT}
+  </update>
+  
+  
+  <select id="selectAccountByIdcard" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_account
+    where v_idcard = #{vIdcard,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectAccountByPatientidcard" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_account
+    where v_patientIdcard = #{vPatientidcard,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectAccountBySincard" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_account
+    where v_sinCard = #{vSincard,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectAccountByHealthcard" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_account
+    where v_healthCard = #{vHealthcard,jdbcType=VARCHAR}
+  </select>
+  
+  
+  
+</mapper>

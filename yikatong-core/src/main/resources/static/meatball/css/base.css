@@ -1,0 +1,45 @@
+@charset "UTF-8";
+@import url("//at.alicdn.com/t/font_555424_e5xkh83jprhhbyb9.css");
+/* @font-face {
+  font-family: 'meatball-icon';  project id 555424
+  src: url('//at.alicdn.com/t/font_555424_9gl4d5rtq6nipb9.eot');
+  src: url('//at.alicdn.com/t/font_555424_9gl4d5rtq6nipb9.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_555424_9gl4d5rtq6nipb9.woff') format('woff'),
+  url('//at.alicdn.com/t/font_555424_9gl4d5rtq6nipb9.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_555424_9gl4d5rtq6nipb9.svg#iconfont') format('svg');
+} */
+
+.meatball-icon{
+  font-family:"meatball-icon" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.meatball-header {position: relative; background-color: #393d49;box-shadow: 0 0 5px 0 #000;height: 62px!important;z-index: 3000;}
+.table-td-title {background-color: #f2f2f2;text-align: center;width: 75px;}
+/* .table-head-img {width: 75px; height: 75px; margin-right: 10px; border-radius: 50%;cursor: pointer;} */
+
+.left,.right {padding: 10px;display: table-cell;border: 1px solid #f40;}
+
+/*默认滚动条样式*/
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    border: 1px #d3d3d3 solid;
+    box-shadow: 0px 0px 3px #dfdfdf inset;
+    border-radius: 10px;
+    background: #eee;
+}
+::-webkit-scrollbar-thumb {
+    border: 1px #808080 solid;
+    border-radius: 10px;
+    background: #999;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #7d7d7d;
+}
+

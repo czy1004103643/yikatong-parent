@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meatball.api.ykt.dao.OperationLogMapper" >
+  <resultMap id="BaseResultMap" type="com.meatball.api.ykt.model.OperationLog" >
+    <id column="b_id" property="bId" jdbcType="BIGINT" />
+    <result column="v_machineId" property="vMachineid" jdbcType="VARCHAR" />
+    <result column="v_content" property="vContent" jdbcType="VARCHAR" />
+    <result column="t_time" property="tTime" jdbcType="TIMESTAMP" />
+    <result column="b_accountId" property="bAccountid" jdbcType="BIGINT" />
+    <result column="v_caaountName" property="vCaaountname" jdbcType="VARCHAR" />
+    <result column="d_balance" property="dBalance" jdbcType="DECIMAL" />
+    <result column="v_ip" property="vIp" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    b_id, v_machineId, v_content, t_time, b_accountId, v_caaountName, d_balance, v_ip
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_operation_log
+    where b_id = #{bId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_operation_log
+    where b_id = #{bId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.meatball.api.ykt.model.OperationLog" >
+    insert into t_operation_log (b_id, v_machineId, v_content, 
+      t_time, b_accountId, v_caaountName, 
+      d_balance, v_ip)
+    values (#{bId,jdbcType=BIGINT}, #{vMachineid,jdbcType=VARCHAR}, #{vContent,jdbcType=VARCHAR}, 
+      #{tTime,jdbcType=TIMESTAMP}, #{bAccountid,jdbcType=BIGINT}, #{vCaaountname,jdbcType=VARCHAR}, 
+      #{dBalance,jdbcType=DECIMAL}, #{vIp,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meatball.api.ykt.model.OperationLog" >
+    insert into t_operation_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bId != null" >
+        b_id,
+      </if>
+      <if test="vMachineid != null" >
+        v_machineId,
+      </if>
+      <if test="vContent != null" >
+        v_content,
+      </if>
+      <if test="tTime != null" >
+        t_time,
+      </if>
+      <if test="bAccountid != null" >
+        b_accountId,
+      </if>
+      <if test="vCaaountname != null" >
+        v_caaountName,
+      </if>
+      <if test="dBalance != null" >
+        d_balance,
+      </if>
+      <if test="vIp != null" >
+        v_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bId != null" >
+        #{bId,jdbcType=BIGINT},
+      </if>
+      <if test="vMachineid != null" >
+        #{vMachineid,jdbcType=VARCHAR},
+      </if>
+      <if test="vContent != null" >
+        #{vContent,jdbcType=VARCHAR},
+      </if>
+      <if test="tTime != null" >
+        #{tTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bAccountid != null" >
+        #{bAccountid,jdbcType=BIGINT},
+      </if>
+      <if test="vCaaountname != null" >
+        #{vCaaountname,jdbcType=VARCHAR},
+      </if>
+      <if test="dBalance != null" >
+        #{dBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="vIp != null" >
+        #{vIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meatball.api.ykt.model.OperationLog" >
+    update t_operation_log
+    <set >
+      <if test="vMachineid != null" >
+        v_machineId = #{vMachineid,jdbcType=VARCHAR},
+      </if>
+      <if test="vContent != null" >
+        v_content = #{vContent,jdbcType=VARCHAR},
+      </if>
+      <if test="tTime != null" >
+        t_time = #{tTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bAccountid != null" >
+        b_accountId = #{bAccountid,jdbcType=BIGINT},
+      </if>
+      <if test="vCaaountname != null" >
+        v_caaountName = #{vCaaountname,jdbcType=VARCHAR},
+      </if>
+      <if test="dBalance != null" >
+        d_balance = #{dBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="vIp != null" >
+        v_ip = #{vIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where b_id = #{bId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meatball.api.ykt.model.OperationLog" >
+    update t_operation_log
+    set v_machineId = #{vMachineid,jdbcType=VARCHAR},
+      v_content = #{vContent,jdbcType=VARCHAR},
+      t_time = #{tTime,jdbcType=TIMESTAMP},
+      b_accountId = #{bAccountid,jdbcType=BIGINT},
+      v_caaountName = #{vCaaountname,jdbcType=VARCHAR},
+      d_balance = #{dBalance,jdbcType=DECIMAL},
+      v_ip = #{vIp,jdbcType=VARCHAR}
+    where b_id = #{bId,jdbcType=BIGINT}
+  </update>
+</mapper>
