@@ -24,7 +24,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @ConfigurationProperties(prefix = "alipay") 
-@PropertySource("classpath:alipaytest.yml")
+@PropertySource("classpath:alipay.yml")
 public class AlipayPayProperties implements Serializable {
 	private static final long serialVersionUID = 1L;
 
