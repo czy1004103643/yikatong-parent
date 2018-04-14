@@ -54,6 +54,7 @@ public class WXTradeService {
 		data.put("total_fee", total_fee);//金额
 		data.put("spbill_create_ip", "123.12.12.123");//终端ip 微信支付API的机器IP
 		data.put("notify_url", "http://zxy.jydz-yjy.com/api/ykt/order/wxback");//回调地址
+//        data.put("notify_url", "http://www.jycompany.cn/api/ykt/order/wxback");//回调地址
 		data.put("trade_type", "NATIVE");//交易类型 扫码支付
         data.put("device_info", "WEB");//设备号 
         data.put("product_id",  productId);//商品编号

@@ -7,7 +7,7 @@ alipay:
  appid: 2015120900947202
  
  # 扫码支付异步回调地址
- #notify_url: http://jycompany.cn/api/ykt/order/zfbback
+# notify_url: http://www.jycompany.cn/api/ykt/order/zfbback
  notify_url: http://zxy.jydz-yjy.com/api/ykt/order/zfbback
 
  # RSA私钥、公钥和支付宝公钥

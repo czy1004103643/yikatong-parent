@@ -136,7 +136,7 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 		String healthCard = null;
 		AmountInfoParams info = new AmountInfoParams();
 		ResultMsg msg = new ResultMsg(200, info);
-		/*1、先查询账户是否存在，如果存在则查询账户信息*/ 
+		/*1、先查询账户是否存在，如果存在则查询账户信息*/
 		switch (params.getType()) {
 		case 1://身份证号
 			idcard = params.getNumber();
@@ -159,7 +159,7 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 			info.setResultMsg("请传入正确的卡类别");
 			break;
 		}
-		 
+
 		if(null != account) {
 			/*2、判断哪种支付方式，并掉用其充值方法*/
 			switch (params.getPayType()) {
@@ -270,7 +270,7 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 		String healthCard = null;
 		AmountInfoParams info = new AmountInfoParams();
 		ResultMsg msg = new ResultMsg(200, info);
-		/*1、先查询账户是否存在，如果存在则查询账户信息*/ 
+		/*1、先查询账户是否存在，如果存在则查询账户信息*/
 		switch (params.getType()) {
 		case 1://身份证号
 			idcard = params.getNumber();

@@ -31,9 +31,9 @@
     where b_id = #{bId,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.meatball.api.ykt.model.ComsumeRecord" >
-  <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="bId">
+  <!--<selectKey resultType="java.lang.Long" order="AFTER" keyProperty="bId">
   		SELECT LAST_INSERT_ID() AS b_id
-  	</selectKey>
+  	</selectKey>-->
     insert into t_comsume_record (b_id, i_payType, v_payName, 
       v_paymentId, b_accountId, v_accountName, 
       i_dealType, v_dealname, d_balance, 
@@ -46,9 +46,9 @@
       #{vOperator,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.meatball.api.ykt.model.ComsumeRecord" >
-  <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="bId">
+  <!--<selectKey resultType="java.lang.Long" order="AFTER" keyProperty="bId">
   		SELECT LAST_INSERT_ID() AS b_id
-  	</selectKey>
+  	</selectKey>-->
     insert into t_comsume_record
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="bId != null" >

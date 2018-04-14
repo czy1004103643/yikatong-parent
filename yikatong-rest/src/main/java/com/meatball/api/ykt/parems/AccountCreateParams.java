@@ -27,7 +27,7 @@ public class AccountCreateParams implements Serializable {
 	@ApiModelProperty(value="建卡类别(1：身份证   2：就诊卡   3：社保卡  4：居民健康卡)", example="1", required = true)
 	private int type;
 	
-	@ApiModelProperty(value="号码", example="123456", required = true)
+	@ApiModelProperty(value="证件号码", example="123456", required = true)
 	private String number;
 	
 	@ApiModelProperty(value="姓名", example="张三", required = true)

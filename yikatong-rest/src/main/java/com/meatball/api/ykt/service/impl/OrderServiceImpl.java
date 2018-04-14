@@ -150,6 +150,34 @@ public class OrderServiceImpl implements OrderService {
 		PayResultParams resultParams = new PayResultParams();
 		switch (params.getOrderType()) {
 			case 1: // 充值
+				// 微信
+				while (true) {
+					ComsumeRecord wx = comsumeRecordMapper.selectByPrimaryKey(params.getWxOrder());
+					if(wx.getiDealstatus() == 0) {
+						resultParams.setNumber(String.valueOf(wx.getbId()));
+						resultParams.setOrderType(1);
+						resultParams.setPayType(1);
+						resultParams.setResultCode(0);
+						resultParams.setResultMsg("微信支付成功" +wx.getdBalance() + "元");
+						break;
+					} else {
+						// 支付宝
+						ComsumeRecord zfb = comsumeRecordMapper.selectByPrimaryKey(params.getZfbOrder());
+						if(zfb.getiDealstatus() == 0) {
+							resultParams.setNumber(String.valueOf(zfb.getbId()));
+							resultParams.setOrderType(1);
+							resultParams.setPayType(2);
+							resultParams.setResultCode(0);
+							resultParams.setResultMsg("支付宝支付成功" +zfb.getdBalance() + "元");
+							break;
+						}
+					}
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
 				break;
 			case 2:	// 消费
 				// 微信
@@ -201,7 +229,7 @@ public class OrderServiceImpl implements OrderService {
 	 * @return void    返回类型 
 	 */
 	private void setRechargeValues(MobileParams params, Account account, RechargeRecord record, String payWay) {
-		record.setbId(null);
+		record.setbId(new Date().getTime());
 		record.setbAccountid(account.getbId());
 		record.setvAccountname(account.getvName());
 		record.setiDealstatus(9);
@@ -238,7 +266,7 @@ public class OrderServiceImpl implements OrderService {
 	 * @return void    返回类型 
 	 */
 	private void setComsumeValues(MobileParams params, Account account, ComsumeRecord crecord, String payWay) {
-		crecord.setbId(null);
+		crecord.setbId(new Date().getTime());
 		crecord.setbAccountid(account.getbId());
 		crecord.setvAccountname(account.getvName());
 		crecord.setiDealstatus(9);
