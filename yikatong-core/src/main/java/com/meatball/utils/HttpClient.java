@@ -8,6 +8,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 模拟http请求
@@ -123,8 +124,10 @@ public class HttpClient {
     }
 
     public static void main(String[] args) {
-        String params = "{\"api_id\": \"40001\",\"card_no\": \"00003999\",\"patient_name\": \"测试\",\"operator_id\": \"YD_WX\",\"birthday\":\"1997-06-17\",\"sex\": \"2\",\"age\": \"21\",\"id_card_no\": \"511623199704173309\",\"address\": \"四川省广安市邻水县\",\"tel\": \"15888883215\",\"date\": \"2018-03-25\",\"time\":\"06:27:07\",\"sn\":\"0\"}";
+        //String params = "{\"api_id\": \"40001\",\"card_no\": \"000039991\",\"patient_name\": \"测试\",\"operator_id\": \"YD_WX\",\"birthday\":\"1997-06-17\",\"sex\": \"2\",\"age\": \"21\",\"id_card_no\": \"511623199704173309\",\"address\": \"四川省广安市邻水县\",\"tel\": \"15888883215\",\"date\": \"2018-03-25\",\"time\":\"06:27:07\",\"sn\":\"0\"}";
+        String params = "{\"birthday\":\"1990-10-10\",\"date\":\"2018-04-14\",\"api_id\":\"40001\",\"id_card_no\":\"111123\",\"address\":\"四川省成都市xx区xx街道\",\"operator_id\":\"YD_WX\",\"sex\":\"0\",\"card_no\":\"1523698344116\",\"patient_name\":\"张三\",\"tel\":\"13500000000\",\"time\":\"06:27:07\",\"sn\":\"0\",\"age\":\"0\"}";
         String result = HttpClient.sendPost("http://mihp.nc120.cn/PlatformService/platform/api", "params=" + params);
+
         System.out.println(result);
     }
 }

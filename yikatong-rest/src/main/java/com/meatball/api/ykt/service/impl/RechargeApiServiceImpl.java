@@ -8,9 +8,14 @@
 package com.meatball.api.ykt.service.impl;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.alibaba.fastjson.JSON;
+import com.meatball.utils.HttpClient;
+import groovy.util.logging.Log4j2;
 import org.springframework.stereotype.Service;
 
 import com.meatball.api.ykt.dao.AccountMapper;
@@ -644,14 +649,37 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 		} else {
 		/*3、账户不存在，则新增信息*/ 	
 			account = new Account();
+			cardNumber = String.valueOf(new Date().getTime()).substring(0, 10);
 			setAddAccountValues(params, account, idcard, cardNumber, sinCard, healthCard);
 			account.setdBalance((long) 0);
 			account.settCreatedate(new Date());
 			accountMapper.insertSelective(account);
+			this.addUserToHis(params, cardNumber);
 			
 		}
 		/*4、生成返回结果*/ 	
 		setReturnAccountValues(account, infoParams);
+	}
+
+	private boolean addUserToHis(AccountCreateParams acc, String cardNo) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("api_id", "40001");
+		params.put("card_no", cardNo);
+		params.put("patient_name", acc.getName());
+		params.put("operator_id", "YD_WX");
+		params.put("birthday", DateUtil.getDay(acc.getBirthday()));
+		params.put("sex", "0");
+		params.put("age", "0");
+		params.put("id_card_no", acc.getNumber());
+		params.put("address", acc.getAddress());
+		params.put("tel", acc.getTel());
+		params.put("date", DateUtil.getDay());
+		params.put("time", "06:27:07");
+		params.put("sn", "0");
+		System.out.println(JSON.toJSONString(params));
+		Map<String, Object> result = JSON.parseObject(HttpClient.sendPost("http://mihp.nc120.cn/PlatformService/platform/api", "params=" + JSON.toJSONString(params)));
+		System.out.println(result);
+		return true;
 	}
 	
 	

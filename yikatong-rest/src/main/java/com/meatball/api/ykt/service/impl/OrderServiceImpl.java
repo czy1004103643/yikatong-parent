@@ -152,7 +152,7 @@ public class OrderServiceImpl implements OrderService {
 			case 1: // 充值
 				// 微信
 				while (true) {
-					ComsumeRecord wx = comsumeRecordMapper.selectByPrimaryKey(params.getWxOrder());
+					RechargeRecord wx = rechargeRecordMapper.selectByPrimaryKey(params.getWxOrder());
 					if(wx.getiDealstatus() == 0) {
 						resultParams.setNumber(String.valueOf(wx.getbId()));
 						resultParams.setOrderType(1);
@@ -162,7 +162,7 @@ public class OrderServiceImpl implements OrderService {
 						break;
 					} else {
 						// 支付宝
-						ComsumeRecord zfb = comsumeRecordMapper.selectByPrimaryKey(params.getZfbOrder());
+						RechargeRecord zfb = rechargeRecordMapper.selectByPrimaryKey(params.getZfbOrder());
 						if(zfb.getiDealstatus() == 0) {
 							resultParams.setNumber(String.valueOf(zfb.getbId()));
 							resultParams.setOrderType(1);
