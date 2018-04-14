@@ -12,6 +12,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.meatball.api.ykt.parems.PayResultParams;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -146,10 +147,50 @@ public class OrderServiceImpl implements OrderService {
 	 */
 	@Override
 	public ResultMsg mobileCallBack(MobileCallBackParams params) {
-		return null;
+		PayResultParams resultParams = new PayResultParams();
+		switch (params.getOrderType()) {
+			case 1: // 充值
+				break;
+			case 2:	// 消费
+				// 微信
+				while (true) {
+					ComsumeRecord wx = comsumeRecordMapper.selectByPrimaryKey(params.getWxOrder());
+					if(wx.getiDealstatus() == 0) {
+						resultParams.setNumber(String.valueOf(wx.getbId()));
+						resultParams.setOrderType(2);
+						resultParams.setPayType(1);
+						resultParams.setResultCode(0);
+						resultParams.setResultMsg("微信支付成功" +wx.getdBalance() + "元");
+						break;
+					} else {
+						// 支付宝
+						ComsumeRecord zfb = comsumeRecordMapper.selectByPrimaryKey(params.getZfbOrder());
+						if(zfb.getiDealstatus() == 0) {
+							resultParams.setNumber(String.valueOf(zfb.getbId()));
+							resultParams.setOrderType(2);
+							resultParams.setPayType(2);
+							resultParams.setResultCode(0);
+							resultParams.setResultMsg("支付宝支付成功" +zfb.getdBalance() + "元");
+							break;
+						}
+					}
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			case 3: // 退款
+				resultParams.setResultCode(1);
+				resultParams.setResultMsg("此功能暂未开通");
+				break;
+			default:
+				resultParams.setResultCode(1);
+				resultParams.setResultMsg("请传入正确的订单类别");
+				break;
+		}
+		return new ResultMsg(200, resultParams);
 	}
-
-
 
 	/** 
 	 * @Title: setRechargeValues 

@@ -35,7 +35,7 @@ spring:
     cache: false  #禁用缓存，开发适用
   datasource: 
     name: meatball
-    url: jdbc:mysql://211.149.149.227:3306/meatball?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://211.149.149.227:3306/yikatong?useUnicode=true&characterEncoding=utf8
     #url: jdbc:mysql://192.168.31.10:3306/yikatong?useUnicode=true&characterEncoding=utf8
 #    url: jdbc:mysql://localhost:3306/yikatong?useUnicode=true&characterEncoding=utf8
 #    username: root

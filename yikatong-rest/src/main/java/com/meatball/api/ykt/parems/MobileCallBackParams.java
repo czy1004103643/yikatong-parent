@@ -24,9 +24,12 @@ import io.swagger.annotations.ApiModelProperty;
 public class MobileCallBackParams implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	@ApiModelProperty(value="订单号", example="1123456", required = true)
-	private String number;
+
+	@ApiModelProperty(value="微信订单号(注：移动支付时必须提供)", example="123456")
+	private Long wxOrder;
+
+	@ApiModelProperty(value="支付宝订单号(注：移动支付时必须提供)", example="123456")
+	private Long zfbOrder;
 	
 	@ApiModelProperty(value="订单类别(1充值、2消费、3退款)", example="1", required = true)
 	private int orderType;
@@ -39,13 +42,19 @@ public class MobileCallBackParams implements Serializable {
 		this.orderType = orderType;
 	}
 
-	public String getNumber() {
-		return number;
+	public Long getWxOrder() {
+		return wxOrder;
 	}
 
-	public void setNumber(String number) {
-		this.number = number;
+	public void setWxOrder(Long wxOrder) {
+		this.wxOrder = wxOrder;
 	}
 
-	 
+	public Long getZfbOrder() {
+		return zfbOrder;
+	}
+
+	public void setZfbOrder(Long zfbOrder) {
+		this.zfbOrder = zfbOrder;
+	}
 }

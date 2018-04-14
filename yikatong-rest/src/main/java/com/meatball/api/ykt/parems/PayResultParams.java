@@ -31,8 +31,11 @@ public class PayResultParams implements Serializable {
 	
 	@ApiModelProperty(value="订单号", example="1123456")
 	private String number;
+
+	@ApiModelProperty(value = "支付方式(1：微信，2：支付宝)", example="1")
+	private Integer payType;
 	
-	@ApiModelProperty(value="订单类别(1充值、2消费、3退款)")
+	@ApiModelProperty(value="订单类别(1充值、2消费、3退款)", example="1")
 	private int orderType;
 
 	public String getNumber() {
@@ -67,6 +70,11 @@ public class PayResultParams implements Serializable {
 		this.resultMsg = resultMsg;
 	}
 
-	 
-	
+	public Integer getPayType() {
+		return payType;
+	}
+
+	public void setPayType(Integer payType) {
+		this.payType = payType;
+	}
 }

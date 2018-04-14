@@ -47,13 +47,13 @@ public class WXTradeService {
      */
     public Map<String, String> doUnifiedOrder(String out_trade_no,String total_fee,String productId){
     	Map<String, String> result = new HashMap<String, String>();
-    	HashMap<String, String> data = new HashMap<String, String>();
+    	HashMap<String, String> data = new HashMap<>();
 		data.put("body", "南充中心医院-一卡通");//商品描述
 		data.put("out_trade_no", out_trade_no);//商户订单号
 		data.put("fee_type", "CNY");//标价币种 人民币
 		data.put("total_fee", total_fee);//金额
 		data.put("spbill_create_ip", "123.12.12.123");//终端ip 微信支付API的机器IP
-		data.put("notify_url", "http://jycompany.cn/api/ykt/order/wxback");//回调地址
+		data.put("notify_url", "http://zxy.jydz-yjy.com/api/ykt/order/wxback");//回调地址
 		data.put("trade_type", "NATIVE");//交易类型 扫码支付
         data.put("device_info", "WEB");//设备号 
         data.put("product_id",  productId);//商品编号

@@ -330,7 +330,8 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 					//插入消费记录信息
 					ComsumeRecord yueRecord = new ComsumeRecord(); 
 					setComsumeRecordValues(5,"余额",params, account, yueRecord);
-					comsumeRecordMapper.insertSelective(yueRecord); 
+					comsumeRecordMapper.insertSelective(yueRecord);
+					info.setBalanceOrder(yueRecord.getbId());
 				} else {
 				//如果不满足则返回提示信息
 					info.setResultCode(1);
@@ -396,6 +397,7 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 		info.setWxOrder(wxOrder);
 		info.setZfbCode(zfbCode);
 		info.setZfbOrder(zfbOrder);
+
 		//插入操作日志
 		operationLogService.insertOperationLog(params.getMachineId(), "消费操作", account.getbId(),
 				account.getvName(), Double.parseDouble(params.getBalance()));

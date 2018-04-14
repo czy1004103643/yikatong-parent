@@ -56,6 +56,9 @@ public class AmountInfoParams implements Serializable {
 	@ApiModelProperty(value="支付宝订单号(注：移动支付时必须提供)", example="123456")
 	private String zfbOrder;
 
+	@ApiModelProperty(value = "余额订单号", example = "3343")
+	private Long balanceOrder;
+
 	public String getWxCode() {
 		return wxCode;
 	}
@@ -144,6 +147,15 @@ public class AmountInfoParams implements Serializable {
 		this.resultMsg = resultMsg;
 	}
 
-	 
-	
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
+	public Long getBalanceOrder() {
+		return balanceOrder;
+	}
+
+	public void setBalanceOrder(Long balanceOrder) {
+		this.balanceOrder = balanceOrder;
+	}
 }
