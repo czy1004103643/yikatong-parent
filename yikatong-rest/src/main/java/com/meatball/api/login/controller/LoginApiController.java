@@ -34,7 +34,7 @@ import springfox.documentation.annotations.ApiIgnore;
  * @date 2017年10月6日 上午12:28:08 
  * @version V1.0   
  */
-@Api(tags = "用户登录")
+@Api(tags = "权限认证")
 @RestController
 @RequestMapping("/api/login")
 public class LoginApiController {

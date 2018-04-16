@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 /**   
  * @Title: AccountModifyParams.java 
@@ -20,6 +21,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @date 2018年3月21日 上午9:46:58 
  * @version V1.0   
  */
+@Data
 public class AccountModifyParams implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -54,118 +56,9 @@ public class AccountModifyParams implements Serializable {
 	@ApiModelProperty(value="居民健康卡号", example="1555555555")
 	private String healthCard;
 	
-	@ApiModelProperty(value="账户余额(带两位小数点)", example="5000.00")
-	private String balance;
-
 	@ApiModelProperty(value="支付密码", example="xxxxxx")
     private String vPaymentcode;
  
 	@ApiModelProperty(value="指纹", example="xxxxxx")
     private String vFingerprint;
-
-	public String getvPaymentcode() {
-		return vPaymentcode;
-	}
-
-	public void setvPaymentcode(String vPaymentcode) {
-		this.vPaymentcode = vPaymentcode;
-	}
-
-	public String getvFingerprint() {
-		return vFingerprint;
-	}
-
-	public void setvFingerprint(String vFingerprint) {
-		this.vFingerprint = vFingerprint;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
-	public String getIdcard() {
-		return idcard;
-	}
-
-	public void setIdcard(String idcard) {
-		this.idcard = idcard == null ? null : idcard.trim();
-	}
-
-	public String getCardNumber() {
-		return cardNumber;
-	}
-
-	public void setCardNumber(String cardNumber) {
-		this.cardNumber = cardNumber == null ? null : cardNumber.trim();
-	}
-
-	public String getSinCard() {
-		return sinCard;
-	}
-
-	public void setSinCard(String sinCard) {
-		this.sinCard = sinCard == null ? null : sinCard.trim();
-	}
-
-	public String getHealthCard() {
-		return healthCard;
-	}
-
-	public void setHealthCard(String healthCard) {
-		this.healthCard = healthCard == null ? null : healthCard.trim();
-	}
-
-	public String getBalance() {
-		return balance;
-	}
-
-	public void setBalance(String balance) {
-		this.balance = balance;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name == null ? null : name.trim();
-	}
-
-	public int getGender() {
-		return gender;
-	}
-
-	public void setGender(int gender) {
-		this.gender = gender;
-	}
-
-	public String getTel() {
-		return tel;
-	}
-
-	public void setTel(String tel) {
-		this.tel = tel == null ? null : tel.trim();
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address == null ? null : address.trim();
-	}
-
-	public Date getBirthday() {
-		return birthday;
-	}
-
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
-	}
-
-
 }

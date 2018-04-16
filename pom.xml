@@ -20,6 +20,9 @@
 	</parent>
 
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
 		<org.apache.shiro.version>1.4.0</org.apache.shiro.version>
 		<org.apache.commons.version>3.6</org.apache.commons.version>
 		<org.mybatis.spring.boot.version>1.3.1</org.mybatis.spring.boot.version>
@@ -170,45 +173,21 @@
 			<artifactId>springfox-swagger2</artifactId>
 			<version>${swagger2.version}</version>
 		</dependency>
-		
-		<!-- <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka</artifactId>
-        </dependency> -->
-		
-		<!-- springfox-swagger-ui -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>io.springfox</groupId> -->
-<!-- 			<artifactId>springfox-swagger-ui</artifactId> -->
-<!-- 			<version>${swagger2.version}</version> -->
-<!-- 		</dependency> -->
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.20</version>
+			<scope>provided</scope>
+		</dependency>
+
 	</dependencies>
-	
-	<!-- <dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement> -->
 
 	<!-- 配置java版本 -->
 	<build>
 		<finalName>yikatong</finalName>
 		<pluginManagement>
 			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<configuration>
-						<source>1.8</source>
-						<target>1.8</target>
-					</configuration>
-				</plugin>
 				<plugin>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-maven-plugin</artifactId>

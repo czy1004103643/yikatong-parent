@@ -124,6 +124,7 @@ public class OrderApiController {
 	})                      
 	@PostMapping("/wxCallBack")
 	@OperateLog("微信回调")
+	@ApiIgnore
 	public ResultMsg wxCallBack(@RequestBody WxCallBackParams params) {
 		return weixinService.getWeixinOrderBackResult(params);
 	}
@@ -138,6 +139,7 @@ public class OrderApiController {
 	})
 	@PostMapping("/aliCallBack")
 	@OperateLog("支付宝回调")
+	@ApiIgnore
 	public ResultMsg aliCallBack(@RequestBody AliCallBackParams params) {
 		
 		return new ResultMsg(200);

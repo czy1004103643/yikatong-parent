@@ -57,25 +57,52 @@ import com.meatball.vo.ResultMsg;
  */
 @Service
 public class RechargeApiServiceImpl implements RechargeApiService {
- 
+    /**
+     * @Title: setRchargeReturnInfo
+     * @Description: TODO(组装充值返回信息)
+     * @param params
+     * @param account
+     * @param info
+     * @param msg
+     * @param wxCode
+     * @param wxOrder
+     * @param zfbCode
+     * @param zfbOrder
+     * @return void    返回类型
+     */
+    private void setRchargeReturnInfo(RechargeAmountParams params, Account account, AmountInfoParams info, String msg, String wxCode, String wxOrder, String zfbCode, String zfbOrder) {
+        info.setBalance(String.valueOf(account.getdBalance()));
+        info.setCreateDate(DateUtil.getTime(new Date()));
+        info.setName(account.getvName());
+        info.setNumber(params.getNumber());
+        info.setType(params.getType());
+        info.setResultCode(0);
+        info.setResultMsg(msg);
+        info.setWxCode(wxCode);
+        info.setWxOrder(wxOrder);
+        info.setZfbCode(zfbCode);
+        info.setZfbOrder(zfbOrder);
+    }
+
+
 	@Resource
 	private AccountMapper accountMapper;
-	
+
 	@Resource
 	private RechargeRecordMapper rechargeRecordMapper;
-	
+
 	@Resource
 	private OperationLogService operationLogService;
-	
+
 	@Resource
 	private ComsumeRecordMapper comsumeRecordMapper;
-	
+
 	@Resource
 	private RefundRecordMapper refundRecordMapper;
-	
+
 	@Resource
 	private OrderService oderService;
-	 
+
 	/**
 	 * 系统建卡操作
 	 */
@@ -93,7 +120,7 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 		String healthCard = null;
 		AccountInfoParams infoParams = new AccountInfoParams();
 		ResultMsg msg = new ResultMsg(200, infoParams);
-		/*1、先查询账户是否存在*/ 
+		/*1、先查询账户是否存在*/
 		switch (params.getType()) {
 		case 1://身份证号
 			idcard = params.getNumber();
@@ -120,8 +147,8 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 			infoParams.setResultMsg("请传入正确的卡类别");
 			break;
 		}
-		
-		return msg; 
+
+		return msg;
 	}
 
 	/**
@@ -192,46 +219,21 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 					info.setResultMsg("移动支付故障");
 				}
 				break;
+            case 4: // 医佳云
+                recharge(params, account, info, "医佳云");
+                break;
 			default:
 				info.setResultCode(1);
 				info.setResultMsg("请传入正确的支付方式");
 				break;
 			}
-			
+
 		} else {
 			//账户不存在直接返回结果
 			info.setResultCode(1);
 			info.setResultMsg("账户不存在");
 		}
-		
 		return msg;
-	}
-
-	/** 
-	 * @Title: setRchargeReturnInfo 
-	 * @Description: TODO(组装充值返回信息) 
-	 * @param params
-	 * @param account
-	 * @param info
-	 * @param msg 
-	 * @param wxCode 
-	 * @param wxOrder 
-	 * @param zfbCode 
-	 * @param zfbOrder 
-	 * @return void    返回类型 
-	 */
-	private void setRchargeReturnInfo(RechargeAmountParams params, Account account, AmountInfoParams info, String msg, String wxCode, String wxOrder, String zfbCode, String zfbOrder) {
-		info.setBalance(String.valueOf(account.getdBalance()));
-		info.setCreateDate(DateUtil.getTime(new Date()));
-		info.setName(account.getvName());
-		info.setNumber(params.getNumber());
-		info.setType(params.getType());
-		info.setResultCode(0);
-		info.setResultMsg(msg);
-		info.setWxCode(wxCode);
-		info.setWxOrder(wxOrder);
-		info.setZfbCode(zfbCode);
-		info.setZfbOrder(zfbOrder);
 	}
 
 	/** 
@@ -740,16 +742,15 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 	 * @return void    返回类型
 	 */
 	private void setModAccountValues(AccountModifyParams params, Account account){
-		account.setdBalance(Double.parseDouble(params.getBalance()));
 		account.setdBirthday(params.getBirthday());
 		account.setiGender(params.getGender());
 		account.setvAddress(params.getAddress());
-		account.setvFingerprint(params.getvFingerprint());
+		account.setvFingerprint(params.getVFingerprint());
 		account.setvHealthcard(params.getHealthCard());
 		account.setvIdcard(params.getIdcard());
 		account.setvName(params.getName());
 		account.setvPatientidcard(params.getCardNumber());
-		account.setvPaymentcode(params.getvPaymentcode());
+		account.setvPaymentcode(params.getVPaymentcode());
 		account.setvSincard(params.getSinCard());
 		account.setvTel(params.getTel());
 	}

@@ -41,42 +41,13 @@ import io.swagger.annotations.ApiResponses;
  * @date 2018年3月13日 上午11:49:28 
  * @version V1.0   
  */
-@Api(tags = "充值接口")
+@Api(tags = "费用接口")
 @RestController
 @RequestMapping("/api/ykt/recharge")
 public class RechargeApiController {
 	@Resource
 	private RechargeApiService rechargeApiService;
-	
-	@ApiOperation(value = "系统建卡", notes = "返回：是否成功和账户基本信息（包含虚拟卡号在内的基本信息）")
-	@ApiResponses({ 
-		@ApiResponse(code = 200, message = "权限验证成功", response = AccountInfoParams.class), 
-		@ApiResponse(code = 201, message = "请求成功并且服务器创建了新的资源", response = Void.class), 
-		@ApiResponse(code = 401, message = "用户名或密码错", response = Void.class), 
-		@ApiResponse(code = 403, message = "权限认证失败", response = Void.class),
-		@ApiResponse(code = 404, message = "请求的资源不存在", response = Void.class)
-	})
-	@PostMapping("/createCard")
-	@OperateLog("系统建卡")
-	public ResultMsg createCard(@RequestBody AccountCreateParams params) throws Exception {
-		return rechargeApiService.getCreateCardResult(params);
-	}
-	
-	@ApiOperation(value = "修改账户", notes = "返回：是否成功和账户基本信息（包含虚拟卡号在内的基本信息）")
-	@ApiResponses({ 
-		@ApiResponse(code = 200, message = "权限验证成功", response = AccountInfoParams.class), 
-		@ApiResponse(code = 201, message = "请求成功并且服务器创建了新的资源", response = Void.class), 
-		@ApiResponse(code = 401, message = "用户名或密码错", response = Void.class), 
-		@ApiResponse(code = 403, message = "权限认证失败", response = Void.class),
-		@ApiResponse(code = 404, message = "请求的资源不存在", response = Void.class)
-	})
-	@PostMapping("/modifyCard")
-	@OperateLog("修改账户")
-	public ResultMsg modifyCard(@RequestBody AccountModifyParams params) {
-		return rechargeApiService.getModifyCardResult(params);
-	}
-	
-	
+
 	@ApiOperation(value = "充值", notes = "返回：是否充值成功和余额等信息（如果是移动支付，则返回二维码支付信息）")
 	@ApiResponses({ 
 		@ApiResponse(code = 200, message = "权限验证成功", response = AmountInfoParams.class), 

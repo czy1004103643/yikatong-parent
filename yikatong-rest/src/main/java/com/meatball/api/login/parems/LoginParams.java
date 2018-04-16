@@ -24,10 +24,10 @@ import io.swagger.annotations.ApiModelProperty;
 public class LoginParams implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@ApiModelProperty(value="用户名", example="zhangsan", required = true)
+	@ApiModelProperty(value="用户名", example="yijiayun", required = true)
 	private String account;
 	
-	@ApiModelProperty(value="密码", example="123456", required = true)
+	@ApiModelProperty(value="密码", example="123", required = true)
 	private String password;
 
 	/** 
