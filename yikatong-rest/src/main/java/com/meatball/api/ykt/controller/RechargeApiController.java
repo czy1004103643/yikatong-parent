@@ -58,7 +58,7 @@ public class RechargeApiController {
 	})
 	@PostMapping("/createCard")
 	@OperateLog("系统建卡")
-	public ResultMsg createCard(@RequestBody AccountCreateParams params) {
+	public ResultMsg createCard(@RequestBody AccountCreateParams params) throws Exception {
 		return rechargeApiService.getCreateCardResult(params);
 	}
 	

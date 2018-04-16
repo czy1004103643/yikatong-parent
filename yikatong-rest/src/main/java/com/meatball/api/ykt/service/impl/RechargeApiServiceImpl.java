@@ -81,7 +81,7 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 	 */
 	@Override
 	@ErrorLog("系统建卡操作")
-	public ResultMsg getCreateCardResult(AccountCreateParams params) {
+	public ResultMsg getCreateCardResult(AccountCreateParams params) throws Exception {
 		Account account = null;
 		//身份证号
 		String idcard = null;
@@ -639,7 +639,7 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 	 * @return void    返回类型
 	 */
 	private void createCard(AccountCreateParams params, Account account, String idcard, String cardNumber,
-			String sinCard, String healthCard, AccountInfoParams infoParams) {
+			String sinCard, String healthCard, AccountInfoParams infoParams) throws Exception {
 		/*2、账户存在，则修改信息*/
 		if(null != account) {
 			account.setbId(account.getbId());
@@ -655,13 +655,12 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 			account.settCreatedate(new Date());
 			accountMapper.insertSelective(account);
 			this.addUserToHis(params, cardNumber);
-			
 		}
 		/*4、生成返回结果*/ 	
 		setReturnAccountValues(account, infoParams);
 	}
 
-	private boolean addUserToHis(AccountCreateParams acc, String cardNo) {
+	private boolean addUserToHis(AccountCreateParams acc, String cardNo) throws Exception {
 		Map<String, Object> params = new HashMap<>();
 		params.put("api_id", "40001");
 		params.put("card_no", cardNo);
@@ -677,9 +676,12 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 		params.put("time", "06:27:07");
 		params.put("sn", "0");
 		System.out.println(JSON.toJSONString(params));
-		Map<String, Object> result = JSON.parseObject(HttpClient.sendPost("http://mihp.nc120.cn/PlatformService/platform/api", "params=" + JSON.toJSONString(params)));
-		System.out.println(result);
-		return true;
+		Map<String, String> result = (Map<String, String>) JSON.parseObject(HttpClient.sendPost("http://mihp.nc120.cn/PlatformService/platform/api", "params=" + JSON.toJSONString(params))).get("result");
+		if(result.get("error").equals("0")) {
+			return true;
+		} else {
+			throw new Exception(result.get("message"));
+		}
 	}
 	
 	

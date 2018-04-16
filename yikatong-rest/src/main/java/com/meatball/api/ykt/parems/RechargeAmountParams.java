@@ -29,10 +29,10 @@ public class RechargeAmountParams implements Serializable {
 	@ApiModelProperty(value="号码", example="123456", required = true)
 	private String number;
 	
-	@ApiModelProperty(value="金额(带两位小数点)", example="5000.00", required = true)
+	@ApiModelProperty(value="金额(带两位小数点)", example="0.01", required = true)
 	private String balance;
 	
-	@ApiModelProperty(value="支付方式(1现金、2银行卡、3移动支付)", example="1", required = true)
+	@ApiModelProperty(value="支付方式(1现金、2银行卡、3移动支付)", example="3", required = true)
 	private int payType;
 	
 	@ApiModelProperty(value="交易类别(1挂号费、2门诊(处方)费、3住院费)", example="1", required = true)

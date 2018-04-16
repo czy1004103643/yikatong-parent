@@ -32,7 +32,7 @@ public interface RechargeApiService {
 	 * @return
 	 * @return ResultMsg    返回 账户基本信息（包含虚拟卡号在内的基本信息）
 	 */
-	public ResultMsg getCreateCardResult(AccountCreateParams params);
+	public ResultMsg getCreateCardResult(AccountCreateParams params) throws Exception;
 	
 	/**
 	 * @Title: getRechargeResult 
