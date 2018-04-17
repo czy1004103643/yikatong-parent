@@ -10,6 +10,7 @@ package com.meatball.api.ykt.parems;
 import java.io.Serializable;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 /**   
  * @Title: PayResultParams.java 
@@ -19,6 +20,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @date 2018年3月13日 下午4:53:09 
  * @version V1.0   
  */
+@Data
 public class PayResultParams implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -37,44 +39,4 @@ public class PayResultParams implements Serializable {
 	
 	@ApiModelProperty(value="订单类别(1充值、2消费、3退款)", example="1")
 	private int orderType;
-
-	public String getNumber() {
-		return number;
-	}
-
-	public void setNumber(String number) {
-		this.number = number;
-	}
-
-	public int getOrderType() {
-		return orderType;
-	}
-
-	public void setOrderType(int orderType) {
-		this.orderType = orderType;
-	}
-
-	public int getResultCode() {
-		return resultCode;
-	}
-
-	public void setResultCode(int resultCode) {
-		this.resultCode = resultCode;
-	}
-
-	public String getResultMsg() {
-		return resultMsg;
-	}
-
-	public void setResultMsg(String resultMsg) {
-		this.resultMsg = resultMsg;
-	}
-
-	public Integer getPayType() {
-		return payType;
-	}
-
-	public void setPayType(Integer payType) {
-		this.payType = payType;
-	}
 }
