@@ -148,10 +148,13 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public ResultMsg mobileCallBack(MobileCallBackParams params) {
 		PayResultParams resultParams = new PayResultParams();
+		resultParams.setResultCode(1);
+		resultParams.setResultMsg("支付超时");
 		switch (params.getOrderType()) {
 			case 1: // 充值
 				// 微信
-				while (true) {
+				int time = 0;
+				while (time < 120) {
 					RechargeRecord wx = rechargeRecordMapper.selectByPrimaryKey(params.getWxOrder());
 					if(wx.getiDealstatus() == 0) {
 						resultParams.setNumber(String.valueOf(wx.getbId()));
@@ -174,6 +177,7 @@ public class OrderServiceImpl implements OrderService {
 					}
 					try {
 						Thread.sleep(1000);
+						time++;
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -181,7 +185,8 @@ public class OrderServiceImpl implements OrderService {
 				break;
 			case 2:	// 消费
 				// 微信
-				while (true) {
+				int timexf = 0;
+				while (timexf < 120) {
 					ComsumeRecord wx = comsumeRecordMapper.selectByPrimaryKey(params.getWxOrder());
 					if(wx.getiDealstatus() == 0) {
 						resultParams.setNumber(String.valueOf(wx.getbId()));
@@ -204,6 +209,7 @@ public class OrderServiceImpl implements OrderService {
 					}
 					try {
 						Thread.sleep(1000);
+						timexf++;
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
