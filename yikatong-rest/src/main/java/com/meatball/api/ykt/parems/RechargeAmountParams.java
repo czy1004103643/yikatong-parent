@@ -37,7 +37,7 @@ public class RechargeAmountParams implements Serializable {
 	@ApiModelProperty(value="支付方式(1 现金、2 银行卡、3 移动支付、4 医佳云)", example="3", required = true)
 	private Integer payType;
 	
-	@ApiModelProperty(value="交易类别(1挂号费、2门诊(处方)费、3住院费)", example="1", required = true)
+	@ApiModelProperty(value="交易类别(1挂号费、2门诊(处方)费、3住院费)", example="1", hidden = true)
 	private Integer dealType;
 	
 	@ApiModelProperty(value="机器编号", example="SN9527", required = true)
