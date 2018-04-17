@@ -42,7 +42,7 @@ public class Account {
     //住址
     private String vAddress;
     //生日
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss") 
+    @JsonFormat(pattern = "yyyy-MM-dd") 
     private Date dBirthday;
 
     public Long getbId() {
