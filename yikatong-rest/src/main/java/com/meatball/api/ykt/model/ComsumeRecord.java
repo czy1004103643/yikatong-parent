@@ -1,6 +1,8 @@
 package com.meatball.api.ykt.model;
 
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 /**
  * @Title: ComsumeRecord.java 
  * @Package com.meatball.api.ykt.model 
@@ -30,6 +32,7 @@ public class ComsumeRecord {
     //交易状态(0成功 1失败 8撤销 9待支付)
     private Integer iDealstatus;
     //消费时间
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date tDealtime;
     //机器编号
     private String vMachineid;

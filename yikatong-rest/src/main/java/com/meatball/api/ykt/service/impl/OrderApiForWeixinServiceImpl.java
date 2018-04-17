@@ -250,7 +250,7 @@ public class OrderApiForWeixinServiceImpl implements OrderApiForWeixinService {
 	 * @throws Exception 
 	 */
 	@Override
-	public void getWxBackMsg(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void getWxBackMsg(HttpServletRequest request, HttpServletResponse resposnse) throws Exception {
 		//解析转换微信回调返回信息 
 		InputStream inputStream;  
         StringBuffer strXML = new StringBuffer();  
@@ -263,6 +263,7 @@ public class OrderApiForWeixinServiceImpl implements OrderApiForWeixinService {
         in.close();  
         inputStream.close();  
         Map<String, String> map = WXPayUtil.xmlToMap(strXML.toString());
+        
         String resXml = "";// 反馈给微信服务器 
         /*1、如果支付成功，则取出订单数据，修改订单状态*/
   		if("SUCCESS".equals(map.get("return_code")) ) {
@@ -296,7 +297,7 @@ public class OrderApiForWeixinServiceImpl implements OrderApiForWeixinService {
   			resXml = "<xml><return_code><![CDATA[FAIL]]></return_code>"  
                     + "<return_msg><![CDATA[报文为空]]></return_msg></xml> "; 
   		}
-		 BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());  
+		 BufferedOutputStream out = new BufferedOutputStream(resposnse.getOutputStream());  
 	     out.write(resXml.getBytes());  
 	     out.flush();  
 	     out.close(); 

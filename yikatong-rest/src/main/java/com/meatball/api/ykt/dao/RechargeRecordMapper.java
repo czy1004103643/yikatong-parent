@@ -2,6 +2,7 @@ package com.meatball.api.ykt.dao;
 
 import java.util.List;
 
+import com.meatball.api.ykt.enums.RechargeRecordDto;
 import com.meatball.api.ykt.model.RechargeRecord;
 /**
  * @Title: RechargeRecordMapper.java 
@@ -73,7 +74,7 @@ public interface RechargeRecordMapper {
      * @return
      * @return RechargeRecord    返回类型
      */
-    List<RechargeRecord> selectBAccountid(Long bAccountid);
+    List<RechargeRecordDto> selectBAccountid(Long bAccountid);
 
     /**
      * @Title: selectSuccessRechargeRecord 

@@ -18,6 +18,7 @@ import com.meatball.api.ykt.model.Account;
 import com.meatball.api.ykt.model.RechargeRecord;
 import com.meatball.api.ykt.dao.ComsumeRecordMapper;
 import com.meatball.api.ykt.dao.RefundRecordMapper;
+import com.meatball.api.ykt.enums.RechargeRecordDto;
 import com.meatball.api.ykt.model.ComsumeRecord;
 import com.meatball.api.ykt.model.RefundRecord;
 import com.meatball.api.ykt.parems.AccountInfoParams;
@@ -46,6 +47,11 @@ public class AccountInfoApiServiceImpl implements AccountInfoApiService {
 	@Resource
 	private RefundRecordMapper refundRecordMapper;
 	@Override
+	
+	
+	/**
+	 * 账户信息查询
+	 */
 	public ResultMsg getAccountInfoBy(AccountQueryParams params) {
 		Account account = null;
 		//身份证号
@@ -90,7 +96,9 @@ public class AccountInfoApiServiceImpl implements AccountInfoApiService {
 		return msg;
 	}
 
-	//余额查询
+	/**
+	 * 余额查询
+	 */
 	@Override
 	public ResultMsg getAccountBalanceBy(AccountQueryParams params) {
 		Account account = null;
@@ -134,11 +142,13 @@ public class AccountInfoApiServiceImpl implements AccountInfoApiService {
 		return msg;
 	}
 
-	
+	/**
+	 * 充值记录查询
+	 */
 	@Override
 	public ResultMsg getRechargeRecordBy(AccountQueryParams params) {
 		Account account = null;
-		List<RechargeRecord> rechargeRecord = null;
+		List<RechargeRecordDto> rechargeRecord = null;
 		//身份证号
 		String idcard = null;
 		//就诊卡号
@@ -190,7 +200,9 @@ public class AccountInfoApiServiceImpl implements AccountInfoApiService {
 		
 	}
 
-	//充值记录查询
+	/**
+	 * 消费记录查询
+	 */
 	@Override
 	public ResultMsg getConsumeRecordBy(AccountQueryParams params) {
 		Account account = null;

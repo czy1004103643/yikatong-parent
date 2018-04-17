@@ -1,6 +1,8 @@
 package com.meatball.api.ykt.model;
 
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 /**
  * @Title: RechargeRecord.java 
  * @Package com.meatball.api.ykt.model 
@@ -30,6 +32,7 @@ public class RechargeRecord {
     //充值状态(0成功 1失败 8撤销9待支付)
     private Integer iDealstatus;
     //充值时间
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss") 
     private Date tDealtime;
     //机器编号
     private String vMachineid;

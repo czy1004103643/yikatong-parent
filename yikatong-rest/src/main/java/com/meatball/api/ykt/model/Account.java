@@ -3,6 +3,8 @@ package com.meatball.api.ykt.model;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 /**
  * @Title: Account.java 
  * @Package com.meatball.api.ykt.model 
@@ -29,7 +31,7 @@ public class Account {
     //指纹
     private String vFingerprint;
     //创建时间
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss") 
     private Date tCreatedate;
     //姓名
     private String vName;
@@ -40,7 +42,7 @@ public class Account {
     //住址
     private String vAddress;
     //生日
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss") 
     private Date dBirthday;
 
     public Long getbId() {
