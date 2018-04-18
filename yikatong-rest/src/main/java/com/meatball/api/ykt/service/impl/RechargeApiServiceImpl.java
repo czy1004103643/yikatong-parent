@@ -337,6 +337,7 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 					//插入消费记录信息
 					ComsumeRecord yueRecord = new ComsumeRecord(); 
 					setComsumeRecordValues(5,"余额",params, account, yueRecord);
+					yueRecord.setbId(new Date().getTime());
 					comsumeRecordMapper.insertSelective(yueRecord);
 					info.setBalanceOrder(yueRecord.getbId());
 				} else {

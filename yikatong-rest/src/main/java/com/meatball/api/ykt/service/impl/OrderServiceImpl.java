@@ -214,6 +214,7 @@ public class OrderServiceImpl implements OrderService {
 						e.printStackTrace();
 					}
 				}
+				break;
 			case 3: // 退款
 				resultParams.setResultCode(1);
 				resultParams.setResultMsg("此功能暂未开通");
