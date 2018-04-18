@@ -43,7 +43,7 @@ public enum DealTypeEnum {
         return value;  
     }  
   
-    public static DealTypeEnum lookup(int value) {  
-        return lookup.get(value);  
+    public static DealTypeEnum lookup(int value) {
+        return lookup.get(value);
     } 
 }

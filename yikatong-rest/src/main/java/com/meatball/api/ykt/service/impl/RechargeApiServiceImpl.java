@@ -70,7 +70,7 @@ public class RechargeApiServiceImpl implements RechargeApiService {
      * @param zfbOrder
      * @return void    返回类型
      */
-    private void setRchargeReturnInfo(RechargeAmountParams params, Account account, AmountInfoParams info, String msg, String wxCode, String wxOrder, String zfbCode, String zfbOrder) {
+    private void setRchargeReturnInfo(RechargeAmountParams params, Account account, AmountInfoParams info, String msg, String wxCode, String wxOrder, String zfbCode, String zfbOrder, RechargeRecord bankRecord) {
         info.setBalance(String.valueOf(account.getdBalance()));
         info.setCreateDate(DateUtil.getTime(new Date()));
         info.setName(account.getvName());
@@ -82,6 +82,7 @@ public class RechargeApiServiceImpl implements RechargeApiService {
         info.setWxOrder(wxOrder);
         info.setZfbCode(zfbCode);
         info.setZfbOrder(zfbOrder);
+        info.setBalanceOrder(bankRecord.getbId());
     }
 
 
@@ -210,7 +211,7 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 				if(null != rinfo && rinfo.getCode() == 200 && null != (PayOrderParams) rinfo.getData()) {
 					PayOrderParams por =  (PayOrderParams) rinfo.getData();
 					/*3、生成返回结果信息*/
-					setRchargeReturnInfo(params, account, info,"移动支付成功预下单",por.getWxCode(),por.getWxOrder(),por.getZfbCode(),por.getZfbOrder());
+					setRchargeReturnInfo(params, account, info,"移动支付成功预下单",por.getWxCode(),por.getWxOrder(),por.getZfbCode(),por.getZfbOrder(), null);
 					//插入操作日志
 					operationLogService.insertOperationLog(params.getMachineId(), "移动支付充值操作", account.getbId(),
 							account.getvName(), Double.parseDouble(params.getBalance()));
@@ -252,9 +253,9 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 		//插入充值记录信息
 		RechargeRecord bankRecord = new RechargeRecord();
 		setRechargeRecordValues(params.getPayType(), aa, params, account, bankRecord);
-		rechargeRecordMapper.insertSelective(bankRecord); 
+		rechargeRecordMapper.insertSelective(bankRecord);
 		//组装返回信息
-		setRchargeReturnInfo(params, account, info,"充值成功"+params.getBalance()+"元",null,null,null,null);
+		setRchargeReturnInfo(params, account, info,"充值成功"+params.getBalance()+"元",null,null,null,null, bankRecord);
 		//插入操作日志
 		operationLogService.insertOperationLog(params.getMachineId(), aa+"充值操作", account.getbId(),
 				account.getvName(), Double.parseDouble(params.getBalance()));
@@ -304,7 +305,7 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 			/*2、判断哪种支付方式，并使用其充值方法*/
 			switch (params.getPayType()) {
 			case 1://现金支付
-				comsume(params, account, "现金", info); 
+				comsume(params, account, "现金", info);
 				break;
 			case 2://银行卡支付
 				comsume(params, account, "银行卡", info); 
@@ -374,6 +375,7 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 		//插入消费记录信息
 		ComsumeRecord bankRecord = new ComsumeRecord(); 
 		setComsumeRecordValues(params.getPayType(),aa,params, account, bankRecord);
+		bankRecord.setbId(new Date().getTime());
 		comsumeRecordMapper.insertSelective(bankRecord);
 		//生成返回信息
 		returnInfo(params, account, info, "消费成功"+params.getBalance()+"元", null,null,null,null);
@@ -768,13 +770,14 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 	 * @return void    返回类型
 	 */
 	private void setRechargeRecordValues(int type,String typename,RechargeAmountParams params, Account account, RechargeRecord record) {
+		record.setbId(new Date().getTime());
 		record.setbAccountid(account.getbId());
 		record.setvAccountname(account.getvName());
 		record.setdBalance(Double.parseDouble(params.getBalance()));
 		record.setiDealstatus(0);
 		record.setiDealtype(params.getDealType());
 		record.settDealtime(new Date());
-		record.setvDealname(DealTypeEnum.lookup(params.getDealType()).toString());
+		// record.setvDealname(DealTypeEnum.lookup(params.getDealType()).toString());
 		record.setvMachineid(params.getMachineId());
 		record.setvOperator(params.getOperator());
 		record.setvOrderid(null);

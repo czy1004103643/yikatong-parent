@@ -1,13 +1,13 @@
 server: 
-  port: 443 #配置端口号
+  port: 80 #配置端口号
   #port: 12580
-  ssl:
-    # 证书名称
-    key-store: yikatong.keystore
-    #密钥库密码
-    key-store-password: P@ssw0rd
-    key-store-type: JKS
-    key-alias: yikatong
+#  ssl:
+#    # 证书名称
+#    key-store: yikatong.keystore
+#    #密钥库密码
+#    key-store-password: P@ssw0rd
+#    key-store-type: JKS
+#    key-alias: yikatong
 secret:
   key: Jeisr^l,?>0  #token验证密钥
   issuer: meatball  #JWT的签发者，是否使用是可选的
