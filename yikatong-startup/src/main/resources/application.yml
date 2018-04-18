@@ -35,13 +35,16 @@ spring:
     cache: false  #禁用缓存，开发适用
   datasource: 
     name: meatball
-    url: jdbc:mysql://211.149.149.227:3306/yikatong?useUnicode=true&characterEncoding=utf8
+    #url: jdbc:mysql://211.149.149.227:3306/meatball?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://211.149.184.96:3306/yikatong?useUnicode=true&characterEncoding=utf8
     #url: jdbc:mysql://192.168.31.10:3306/yikatong?useUnicode=true&characterEncoding=utf8
 #    url: jdbc:mysql://localhost:3306/yikatong?useUnicode=true&characterEncoding=utf8
 #    username: root
 #    password: jiayuan
-    username: jgrjb
-    password: Jiayuanjgrjb20
+    #username: jgrjb
+   # password: Jiayuanjgrjb20
+    username: root
+    password: tanjun1536
     type: com.alibaba.druid.pool.DruidDataSource  #使用druid数据源
     driver-class-name: com.mysql.jdbc.Driver
     filters: stat,wall,log4j
