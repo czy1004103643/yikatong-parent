@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class HttpsComponent {
 
-    @Bean
+    /*@Bean
     public EmbeddedServletContainerFactory servletContainer() {
         TomcatEmbeddedServletContainerFactory tomcat = new TomcatEmbeddedServletContainerFactory(){
             @Override
@@ -42,5 +42,5 @@ public class HttpsComponent {
         //监听到http的端口号后转向到的https的端口号
         connector.setRedirectPort(443);
         return connector;
-    }
+    }*/
 }
