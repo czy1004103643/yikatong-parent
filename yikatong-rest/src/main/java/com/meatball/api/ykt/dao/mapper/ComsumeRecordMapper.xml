@@ -198,4 +198,14 @@
     from t_comsume_record
     where b_accountId = #{bAccountid,jdbcType=BIGINT}
   </select>
+  
+  <select id="selectSuccessComsumeRecord" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  
+  select 
+    <include refid="Base_Column_List" />
+    from t_comsume_record
+    where b_id = #{bId,jdbcType=BIGINT}
+   and i_dealStatus = 0
+  </select>
+  
 </mapper>
