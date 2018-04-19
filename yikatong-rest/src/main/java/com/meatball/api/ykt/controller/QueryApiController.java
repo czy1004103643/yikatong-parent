@@ -11,6 +11,7 @@ import com.meatball.api.ykt.parems.AccountInfoParams;
 import com.meatball.api.ykt.parems.AccountQueryParams;
 import com.meatball.api.ykt.parems.ConsumeRecordParams;
 import com.meatball.api.ykt.parems.RechargeRecordParams;
+import com.meatball.api.ykt.parems.RefundAmountInfoParams;
 import com.meatball.api.ykt.parems.RefundRecordParams;
 import com.meatball.api.ykt.service.AccountInfoApiService;
 import com.meatball.component.OperateLog;
@@ -53,7 +54,7 @@ public class QueryApiController {
 	
 	@ApiOperation(value = "余额查询", notes = "返回：账户余额")
 	@ApiResponses({ 
-		@ApiResponse(code = 200, message = "权限验证成功", response = AccountInfoParams.class), 
+		@ApiResponse(code = 200, message = "权限验证成功", response = RefundAmountInfoParams.class), 
 		@ApiResponse(code = 201, message = "请求成功并且服务器创建了新的资源", response = Void.class), 
 		@ApiResponse(code = 401, message = "用户名或密码错", response = Void.class), 
 		@ApiResponse(code = 403, message = "权限认证失败", response = Void.class),
