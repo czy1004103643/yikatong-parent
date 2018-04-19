@@ -242,9 +242,9 @@ public class OrderServiceImpl implements OrderService {
 		record.setiDealstatus(9);
 		record.setiDealtype(params.getDealType());
 		record.settDealtime(new Date());
-		record.setvDealname(DealTypeEnum.lookup(params.getDealType()).toString());  
+		// record.setvDealname(DealTypeEnum.lookup(params.getDealType()).toString());
 		record.setvMachineid(params.getMachineId());
-		record.setvOperator(params.getOperator());
+		record.setvOperator(params.getOperatorName());
 		record.setvOrderid(null);
 		
 		switch (payWay) {
@@ -281,7 +281,7 @@ public class OrderServiceImpl implements OrderService {
 		crecord.settDealtime(new Date());
 		crecord.setvDealname(DealTypeEnum.lookup(params.getDealType()).toString());  
 		crecord.setvMachineid(params.getMachineId());
-		crecord.setvOperator(params.getOperator());
+		crecord.setvOperator(params.getOperatorName());
 		crecord.setvPaymentid(null);
 		switch (payWay) {
 		case "wx":

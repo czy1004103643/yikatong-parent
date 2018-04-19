@@ -15,7 +15,6 @@ import javax.annotation.Resource;
 
 import com.alibaba.fastjson.JSON;
 import com.meatball.utils.HttpClient;
-import groovy.util.logging.Log4j2;
 import org.springframework.stereotype.Service;
 
 import com.meatball.api.ykt.dao.AccountMapper;
@@ -82,7 +81,7 @@ public class RechargeApiServiceImpl implements RechargeApiService {
         info.setWxOrder(wxOrder);
         info.setZfbCode(zfbCode);
         info.setZfbOrder(zfbOrder);
-        info.setBalanceOrder(bankRecord.getbId());
+        info.setBalanceOrder(bankRecord == null ? null : bankRecord.getbId());
     }
 
 
@@ -205,7 +204,7 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 			case 3://移动支付
 				//组装移动支付方法传入的参数
 				MobileParams mobileParams= new MobileParams();
-				setMoblieParams(mobileParams,account.getbId(), 1,params.getMachineId(),params.getOperator(),params.getBalance(),params.getDealType());
+				setMoblieParams(mobileParams,account.getbId(), 1,params.getMachineId(),params.getOperatorName(),params.getBalance(),null);
 				//调用移动支付
 				ResultMsg rinfo =  oderService.mobileOrder(mobileParams);
 				if(null != rinfo && rinfo.getCode() == 200 && null != (PayOrderParams) rinfo.getData()) {
@@ -252,6 +251,7 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 		accountMapper.updateByPrimaryKeySelective(account);
 		//插入充值记录信息
 		RechargeRecord bankRecord = new RechargeRecord();
+		bankRecord.setbId(new Date().getTime());
 		setRechargeRecordValues(params.getPayType(), aa, params, account, bankRecord);
 		rechargeRecordMapper.insertSelective(bankRecord);
 		//组装返回信息
@@ -313,7 +313,7 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 			case 3://移动支付
 				//组装移动支付方法传入的参数
 				MobileParams mobileParams= new MobileParams();
-				setMoblieParams(mobileParams,account.getbId(), 2,params.getMachineId(),params.getOperator(),params.getBalance(),params.getDealType());
+				setMoblieParams(mobileParams,account.getbId(), 2,params.getMachineId(),params.getOperatorName(),params.getBalance(),params.getDealType());
 				//调用移动支付
 				ResultMsg rinfo =  oderService.mobileOrder(mobileParams);
 				if(null != rinfo && rinfo.getCode() == 200 && null != (PayOrderParams) rinfo.getData()) {
@@ -680,7 +680,7 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 		params.put("date", DateUtil.getDay());
 		params.put("time", "06:27:07");
 		params.put("sn", "0");
-		System.out.println(JSON.toJSONString(params));
+//		System.out.println(JSON.toJSONString(params));
 		Map<String, String> result = (Map<String, String>) JSON.parseObject(HttpClient.sendPost("http://mihp.nc120.cn/PlatformService/platform/api", "params=" + JSON.toJSONString(params))).get("result");
 		if(result.get("error").equals("0")) {
 			return true;
@@ -770,7 +770,7 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 	 * @return void    返回类型
 	 */
 	private void setRechargeRecordValues(int type,String typename,RechargeAmountParams params, Account account, RechargeRecord record) {
-		record.setbId(new Date().getTime());
+		// record.setbId(new Date().getTime());
 		record.setbAccountid(account.getbId());
 		record.setvAccountname(account.getvName());
 		record.setdBalance(Double.parseDouble(params.getBalance()));
@@ -779,7 +779,7 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 		record.settDealtime(new Date());
 		// record.setvDealname(DealTypeEnum.lookup(params.getDealType()).toString());
 		record.setvMachineid(params.getMachineId());
-		record.setvOperator(params.getOperator());
+		record.setvOperator(params.getOperatorName());
 		record.setvOrderid(null);
 		record.setvPayname(typename);
 		record.setiPaytype(type);
@@ -806,7 +806,7 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 		record.setvDealname(DealTypeEnum.lookup(params.getDealType()).toString());
 		 
 		record.setvMachineid(params.getMachineId());
-		record.setvOperator(params.getOperator());
+		record.setvOperator(params.getOperatorName());
 		record.setvPaymentid(null);
 		record.setvPayname(string);
 		record.setiPaytype(i);
@@ -832,7 +832,7 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 		record.settDealtime(new Date());
 		record.setvDealname("余额");
 		record.setvMachineid(params.getMachineId());
-		record.setvOperator(params.getOperator());
+		record.setvOperator(params.getOperatorName());
 		record.setvPaymentid(null);
 		record.setvPayname(string);
 		record.setiPaytype(i);
@@ -852,9 +852,9 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 	 * @return void    返回类型
 	 */
 	private void setMoblieParams(MobileParams mobileParams, Long userId, int m, String machineId, String operator,
-			String balance, int dealType) {
+			String balance, Integer dealType) {
 		mobileParams.setMachineId(machineId);
-		mobileParams.setOperator(operator);
+		mobileParams.setOperatorName(operator);
 		mobileParams.setBalance(balance);//微信金额是分
 		mobileParams.setDealType(dealType);
 		mobileParams.setUserId(userId);

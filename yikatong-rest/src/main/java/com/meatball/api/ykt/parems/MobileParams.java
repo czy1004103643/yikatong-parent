@@ -39,7 +39,7 @@ public class MobileParams implements Serializable {
 	private String machineId ;
 	
 	@ApiModelProperty(value="操作员", example="张三")
-	private String operator;
+	private String operatorName;
 
 	public Long getUserId() {
 		return userId;
@@ -81,12 +81,13 @@ public class MobileParams implements Serializable {
 		this.machineId = machineId;
 	}
 
-	public String getOperator() {
-		return operator;
+	public String getOperatorName() {
+		return operatorName;
 	}
 
-	public void setOperator(String operator) {
-		this.operator = operator;
+	public void setOperatorName(String operatorName) {
+		this.operatorName = operatorName;
 	}
+ 
 
 }

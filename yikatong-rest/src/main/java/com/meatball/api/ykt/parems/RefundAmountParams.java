@@ -51,7 +51,7 @@ public class RefundAmountParams implements Serializable {
 	private String machineId ;
 	
 	@ApiModelProperty(value="操作员", example="张三", required = true)
-	private String operator;
+	private String operatorName;
 	
 
 	public int getType() {
@@ -85,13 +85,14 @@ public class RefundAmountParams implements Serializable {
 	public void setMachineId(String machineId) {
 		this.machineId = machineId;
 	}
+ 
 
-	public String getOperator() {
-		return operator;
+	public String getOperatorName() {
+		return operatorName;
 	}
 
-	public void setOperator(String operator) {
-		this.operator = operator;
+	public void setOperatorName(String operatorName) {
+		this.operatorName = operatorName;
 	}
 
 	public String getPic() {

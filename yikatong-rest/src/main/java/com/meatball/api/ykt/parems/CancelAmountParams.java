@@ -44,5 +44,5 @@ public class CancelAmountParams implements Serializable {
 	private String machineId ;
 	
 	@ApiModelProperty(value="操作员", example="张三", required = true)
-	private String operator;
+	private String operatorName;
 }
