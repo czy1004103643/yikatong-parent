@@ -242,7 +242,7 @@ public class OrderServiceImpl implements OrderService {
 		record.setiDealstatus(9);
 		record.setiDealtype(params.getDealType());
 		record.settDealtime(new Date());
-		record.setvDealname(DealTypeEnum.lookup(params.getDealType()).toString());  
+		// record.setvDealname(DealTypeEnum.lookup(params.getDealType()).toString());
 		record.setvMachineid(params.getMachineId());
 		record.setvOperator(params.getOperator());
 		record.setvOrderid(null);

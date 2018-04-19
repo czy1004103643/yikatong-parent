@@ -82,7 +82,7 @@ public class RechargeApiServiceImpl implements RechargeApiService {
         info.setWxOrder(wxOrder);
         info.setZfbCode(zfbCode);
         info.setZfbOrder(zfbOrder);
-        info.setBalanceOrder(bankRecord.getbId());
+        info.setBalanceOrder(bankRecord == null ? null : bankRecord.getbId());
     }
 
 
@@ -205,7 +205,7 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 			case 3://移动支付
 				//组装移动支付方法传入的参数
 				MobileParams mobileParams= new MobileParams();
-				setMoblieParams(mobileParams,account.getbId(), 1,params.getMachineId(),params.getOperator(),params.getBalance(),params.getDealType());
+				setMoblieParams(mobileParams,account.getbId(), 1,params.getMachineId(),params.getOperator(),params.getBalance(),null);
 				//调用移动支付
 				ResultMsg rinfo =  oderService.mobileOrder(mobileParams);
 				if(null != rinfo && rinfo.getCode() == 200 && null != (PayOrderParams) rinfo.getData()) {
@@ -252,6 +252,7 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 		accountMapper.updateByPrimaryKeySelective(account);
 		//插入充值记录信息
 		RechargeRecord bankRecord = new RechargeRecord();
+		bankRecord.setbId(new Date().getTime());
 		setRechargeRecordValues(params.getPayType(), aa, params, account, bankRecord);
 		rechargeRecordMapper.insertSelective(bankRecord);
 		//组装返回信息
@@ -770,7 +771,7 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 	 * @return void    返回类型
 	 */
 	private void setRechargeRecordValues(int type,String typename,RechargeAmountParams params, Account account, RechargeRecord record) {
-		record.setbId(new Date().getTime());
+		// record.setbId(new Date().getTime());
 		record.setbAccountid(account.getbId());
 		record.setvAccountname(account.getvName());
 		record.setdBalance(Double.parseDouble(params.getBalance()));
@@ -852,7 +853,7 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 	 * @return void    返回类型
 	 */
 	private void setMoblieParams(MobileParams mobileParams, Long userId, int m, String machineId, String operator,
-			String balance, int dealType) {
+			String balance, Integer dealType) {
 		mobileParams.setMachineId(machineId);
 		mobileParams.setOperator(operator);
 		mobileParams.setBalance(balance);//微信金额是分
