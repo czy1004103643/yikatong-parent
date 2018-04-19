@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import com.meatball.api.ykt.dao.AccountMapper;
 import com.meatball.api.ykt.dao.RechargeRecordMapper;
 import com.meatball.api.ykt.model.Account;
-import com.meatball.api.ykt.model.RechargeRecord;
 import com.meatball.api.ykt.dao.ComsumeRecordMapper;
 import com.meatball.api.ykt.dao.RefundRecordMapper;
 import com.meatball.api.ykt.enums.RechargeRecordDto;

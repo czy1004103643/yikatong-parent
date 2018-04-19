@@ -7,8 +7,6 @@
 */
 package com.meatball.api.ykt.service;
 
-import org.springframework.web.bind.annotation.RequestBody;
-
 import com.meatball.api.ykt.parems.MobileCallBackParams;
 import com.meatball.api.ykt.parems.MobileParams;
 import com.meatball.vo.ResultMsg;
