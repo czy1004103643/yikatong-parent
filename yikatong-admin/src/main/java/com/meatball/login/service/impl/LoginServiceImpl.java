@@ -101,7 +101,7 @@ public class LoginServiceImpl implements LoginService {
 			message = "错误的用户名或密码";
 			e.printStackTrace();
 		}
-		return new ResultMsg(code, message, token, sysUser);
+		return new ResultMsg(code, message, token, null);
 	}
 	
 	/**

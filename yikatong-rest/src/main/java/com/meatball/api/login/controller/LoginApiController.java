@@ -50,11 +50,10 @@ public class LoginApiController {
 	 */
 	@ApiOperation(value = "获取授权，并返回权限及菜单信息", notes = "验证用户名与密码是否正确")
 	@ApiResponses({ 
-		@ApiResponse(code = 200, message = "权限验证成功", response = SysUser.class), 
-		@ApiResponse(code = 201, message = "请求成功并且服务器创建了新的资源", response = Void.class), 
-		@ApiResponse(code = 401, message = "用户名或密码错", response = Void.class), 
-		@ApiResponse(code = 403, message = "权限认证失败", response = Void.class),
-		@ApiResponse(code = 404, message = "请求的资源不存在", response = Void.class)
+		@ApiResponse(code = 200, message = "权限验证成功"),
+		@ApiResponse(code = 401, message = "用户名或密码错"),
+		@ApiResponse(code = 403, message = "权限认证失败"),
+		@ApiResponse(code = 404, message = "请求的资源不存在")
 	})
 	@PostMapping("/validate")
 	@OperateLog("用户登陆")
