@@ -698,6 +698,7 @@ public class RechargeApiServiceImpl implements RechargeApiService {
 	 * @return void    返回类型
 	 */
 	private void setReturnAccountValues(Account account, AccountInfoParams infoParams) {
+		infoParams.setId(account.getbId().toString());
 		infoParams.setName(account.getvName());
 		infoParams.setIdcard(account.getvIdcard());
 		infoParams.setCardNumber(account.getvPatientidcard());
